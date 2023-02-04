@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amazon Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+
+<style>
+    #photo {
+
+        width: 100px;
+        height: 100px;
+        /* background-color:red; */
+        border-radius: 10px;
+        border: 2px solid #f3f3f3;
+        overflow: hidden;
+
+        margin-left: 50px;
+    }
+
+    #photo img {
+
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+
+    #wish {
+        margin: .5vw;
+        padding: .2vw .6vw;
+        position: absolute;
+        text-decoration: none;
+        color: #fff;
+        right: 1vw;
+        background-color: rgb(64, 63, 63);
+        border-radius: 1vw;
+        width: 10.5%;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        gap: .5vw;
+        transition: all cubic-bezier(0.19, 1, 0.22, 1) .5s;
+    }
+
+    #wish:hover {
+        width: fit-content;
+        transition: all cubic-bezier(0.19, 1, 0.22, 1) .5s;
+
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mamazon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mart">Shopping area</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/wishlist/products/">Your wishlist</a>
+                    </li>
+
+
+                </ul>
+
+                <a href="/logout" class="btn btn-danger">Log Out</a>
+            </div>
+        </div>
+    </nav>

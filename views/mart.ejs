@@ -1,0 +1,50 @@
+<%- include('./partials/header'); -%>
+
+
+<div class="head">
+    <h2 class="m-3 ">Shop from all products</h2>
+    <hr>
+</div>
+<div style="gap: 25px; margin-left: 40px;" class="d-flex mt-4">
+    <!-- changes    -->
+    <% product.reverse().forEach(function(elem){ %>
+
+
+        <div class="card" style="width: 18rem;">
+            <% if (user.wishlist.indexOf(elem._id)===-1) { %>
+                <a id="wish" href="wishlist/product/<%=elem.id %>"><i class="ri-heart-fill"></i>
+                    Add to wishlist</a>
+                <% } else{ %>
+                    <a id="wish" href="wishlist/product/<%=elem.id %>"><i class="ri-heart-fill" style="color: red;"></i>
+                        Remove from wishlist</a>
+                    <% } %>
+            <div class="card-body">
+                <img style="min-height: 15vw;" class="card-img-top embed-responsive-item" src="../images/uploads/productimages/<%=elem.pic[0]%>"
+                    alt="">
+                <h5 class="card-title mt-3">
+                    <%= elem.name %>
+                </h5>
+                <h6 style="font-weight: 500; font-size: 1rem;">seller - <%=elem.sellerid.name%>
+                </h6>
+                <p class="card-text">
+                    <%=elem.desc%>
+                </p>
+
+                <% if(user.productid.indexOf(elem._id) ===-1){ %>
+                    <a href="wishlist/product/<%=elem.id %>" class="btn btn-primary">Wishlist</a>
+                    <a href="#" class="btn btn-primary">Buy Now</a>
+                    
+                    <% } else { %>
+                        
+                            <small style=" display: block; margin-bottom: .4vw;">You sell this product</small>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="delete/product/<%= elem.id%>" class="btn btn-danger">Delete</a>
+                <% } %>
+
+
+            </div>
+        </div>
+        <% }) %>
+
+</div>
+<%- include('./partials/footer'); -%>
