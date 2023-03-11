@@ -5,7 +5,7 @@
         <h2 class="m-3 ">All products that you sell</h2>
         <hr>
     </div>
-    <div style="gap: 25px; margin-left: 40px;" class="d-flex mt-4" >
+    <div style="gap: 25px; margin-left: 40px; display: grid; grid-template-columns: auto auto auto auto;" lass=" mt-4">
         <!-- changes    -->
         <% products.forEach(function(elem){ %>
             <% if(user.productid.indexOf(elem.id) !==-1){ %>
@@ -32,21 +32,22 @@
                                     </p>
 
                                     <% if(user.productid.indexOf(elem.id) !==-1){ %>
-                                    
-                                        <small style=" display: block; margin-bottom: .4vw;">You sell this product</small>
+
+                                        <small style=" display: block; margin-bottom: .4vw;">You sell this
+                                            product</small>
                                         <a href="#" class="btn btn-primary">Edit</a>
                                         <a href="delete/product/<%= elem.id%>" class="btn btn-danger">Delete</a>
-                                    
+
                                         <% } else { %>
                                             <a href="#" class="btn btn-primary">Buy Now</a>
                                             <% } %>
 
-                                  
 
-                                    <% } %>
+
                                 </div>
                 </div>
-                <% }) %>
+                <% } %>
+                    <% }) %>
 
     </div>
     <%- include('./partials/footer'); -%>
