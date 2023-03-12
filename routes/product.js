@@ -5,6 +5,7 @@ const plm = require('passport-local-mongoose')
 
 
 const productSchema = mongoose.Schema({
+  username :String,
   name: String,
   sellerid: {
     type: mongoose.Types.ObjectId,

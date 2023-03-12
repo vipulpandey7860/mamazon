@@ -3,6 +3,7 @@ var router = express.Router();
 const passport = require('passport')
 const userModel = require('../routes/users');
 const productModel = require('../routes/product');
+const bodyParser = require('body-parser');
 
 const multer = require('multer')
 const config = require('../config/config')
@@ -146,6 +147,7 @@ router.post("/create/product", isLoggedin, productImageStorage.array('pic', 3), 
 
   if (userData.isSeller) {
     let data = {
+      username: userData.username,
       sellerid: userData._id,
       name: req.body.name,
       pic: req.files.map(elem => elem.filename),
@@ -208,29 +210,39 @@ router.get('/wishlist/product/:id', isLoggedin, async function (req, res) {
 });
 
 
-router.get('edit/product/:id', isLoggedin, async function (req, res, next) {
+router.get('/edit/product/:id', isLoggedin, async function (req, res, next) {
   let product = await productModel.findOne({ _id: req.params.id });
-
-  res.send("edit page")
+  res.render("edit", { product })
 })
 
 
 router.post('/edit/product/:id', isLoggedin, async function (req, res) {
 
-  let product = await productModel.findOneAndUpdate({ _id: req.params.id });
-  //................
+  //  await productModel.findOneAndUpdate({ _id: req.params.id }, {
+    // name: req.body.name,
+    // pic: req.files.map(elem => elem.filename),
+    // price: req.body.price,
+    // desc: req.body.desc,
+  // } );
+  // await productdata.save();
+
+  console.log(req.body)
+
+  // res.redirect('/profile')
+
 })
 
 
 router.get('/delete/product/:id', isLoggedin, async function (req, res, next) {
   var user = await userModel.findOne({ username: req.session.passport.user });
-  var product = await productModel.findOneAndDelete({ _id: req.params.id }).populate("sellerid");
+  var product = await productModel.findOne({ _id: req.params.id }).populate("sellerid");
 
   if (user.username === product.sellerid.username) {
     let productDelete = await productModel.findOneAndDelete({ _id: req.params.id });
-    user.product.splice(user.productid.indexOf(user._id), 1);
+    user.productid.splice(user.productid.indexOf(product._id), 1);
     await user.save();
     res.redirect("back");
+    
   }
 
   else {
